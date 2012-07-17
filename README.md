@@ -70,6 +70,8 @@ Pick Theme
 1. Open /extras/themes/settings.less and uncomment the @import line (remove the //s) of the theme you want to use.
 2. Compile.
 
+Specifically, you'll need to compile less/bootstrap.less. If you're running less on node.js, cd to the less directory and run ```lessc bootstrap.less > ../css/bootstrap.css```
+
 Advanced Setup
 ==============
 
