@@ -5,23 +5,20 @@ var poorSoul = false;
 
 // Some functions we'll need later and consistently.
 
-function clearCache() {
+function clearCache(testVal) {
 
 	// Let's see if the browser has localStorage so
 	// this doesn't blow up.
-	var hasStorage = (function() {
-    try {
-      localStorage.setItem(mod, mod);
-      localStorage.removeItem(mod);
-      return true;
-    } catch(e) {
-      return false;
-    }
-  }());
+	var hasStorage = ("w" == (localStorage.setItem = "w"));
 
-	if(hasStorage) {localStorage.clear()}; // This is the part that actually clears the cache.
-	console.log('Cache has been cleared. Reloading...');
-	location.reload(true);
+	if(hasStorage) {
+		localStorage.clear();
+		consoleLog('Cache has been cleared. Reloading...');
+		location.reload(true);
+	} // This is the part that actually clears the cache.
+	else {
+		consoleLog('This browser does not support localStorage.','error');
+	}
 }
 
 function consoleLog(msg, msgType) { 
@@ -121,7 +118,7 @@ the root directory it will be doing all its magic in.
  };  
 })(jQuery);
 
-function appendMagic(newRootDir, newAppendee) {
+function appendMagic(newRootDir, newAppendee, testCode) {
 
 /* ====================================================
 If we're running this for the first time, let's establish the

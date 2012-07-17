@@ -8,6 +8,7 @@
  * or GPL (GPL-LICENSE.txt) licenses.
  */
 
+
 (function( window ) {
 
 var QUnit,
@@ -1930,3 +1931,10 @@ if ( typeof exports !== "undefined" ) {
 
 // get at whatever the global object is, like window in browsers
 }( (function() {return this;}.call()) ));
+
+// Makes sure the tests start only when ready. 
+// To write tests at the document level, just override this function.
+QUnit.begin(function() {
+	beginTest();
+});
+
